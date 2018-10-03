@@ -6,7 +6,7 @@ sudo yum install ansible
 **NOTA**: La instalación de *ansible* puede ser en más de un servidor.
 
 Una vez finalizada la instalación configuramos el archivo ubicado en **/etc/ansible/hosts**. En este archivo se indican los servidores en los cuales se ejecutarán los comandos remotamente.
-Es necesario añadir un grupo y en el indicar los servidores remotos, la sintáxis es la siguiente:
+Es necesario añadir un grupo y en él indicar los servidores remotos, la sintáxis es la siguiente:
 
 ```bash
 [Nombre del grupo]
