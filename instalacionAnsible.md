@@ -13,9 +13,9 @@ Es necesario añadir un grupo y en el indicar los servidores remotos, la sintáx
 <alias del servidor> asible_ssh_host = <direccion ip del servidor> ansible_ssh_user = <usuario> ansible_become = true
 ```
 Donde:
-* **<alias del servidor>**: Es el nombre con el que identificaremos al servidor.
-* **<direccion ip del servidor>**: Es la dirección IP del servidor.
-* **<usuario>**: Es el usuario con el que se conectará Ansible al servidor.
+* **< alias del servidor >**: Es el nombre con el que identificaremos al servidor.
+* **< direccion ip del servidor >**: Es la dirección IP del servidor.
+* **< usuario >**: Es el usuario con el que se conectará Ansible al servidor.
 * ansible_become: Indica que la ejecución de todos los comandos debe ser en usuario **root**
 
 Un ejemplo de la estructura del archivo anterior es la siguiente:
