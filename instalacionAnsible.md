@@ -93,4 +93,34 @@ ssh-keygen -t rsa -b 4096
 Sin escribir nada, damos enter en cada una de las opciones para obtener al final dos archivos llamados *id_rsa* e *id_rsa.pub* ubicados en el directorio **/home/ansible/.ssh**.
 Con esto la llave habra sido creada.
 
+Posterior a la creación de la llave es preciso evaluarla y añadirla, dichas operaciones las hacemos con los siguientes comandos:
+```bash
+sudo su -
+eval $(ssh-agent -s)
+ssh-add /home/ansible/.ssh/id_rsa
+```
+**NOTA**: Los comandos anteriores siempre hay que ejecutarlos antes de utilizar ansible.
 
+## Alta de Ansible en los servidores
+Para dar de alta al usuario ansible en todos los servidores, ejecutamos en cada uno, los comandos siguientes:
+```bash
+useradd -m -g operaciones ansible 
+mkdir -p /home/ansible/.ssh/ 
+touch /home/ansible/.ssh/authorized_keys
+chmod 700 /home/ansible/.ssh/
+chmod 600 /home/ansible/.ssh/authorized_keys 
+echo ' < llave publica >' > /home/ansible/.ssh/authorized_keys
+chown ansible:operaciones /home/ansible/ -R 
+echo 'ansible  ALL=(ALL)      NOPASSWD: ALL' >> /etc/sudoers
+```
+Donde:
+* **< llave publica >**: Es el contenido que tiene el archivo *id_rsa.pub* creado en pasos anteriores.
+
+**NOTA**: Para el ejemplo anterior es necesario tener creado el grupo llamado **operaciones**.
+
+## Prueba de Ansible
+Para probar que ansible corre perfectamente, nos ubicamos en el servidor donde fue instalado Ansible y ejecutamos el comando:
+```bash
+ansible [grupo] -m ping
+```
+**NOTA**: En [grupo] colocamos el nombre del grupo creado en el archivo **/etc/ansible/hosts**
