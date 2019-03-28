@@ -1,1 +1,1 @@
-# OpenShiftAzure
+# OpenShift
